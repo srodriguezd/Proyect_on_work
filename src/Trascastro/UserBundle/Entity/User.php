@@ -51,13 +51,13 @@ class User extends BaseUser
     private $UserImg;*/
 
     /**
-    * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Comentarios", inversedBy="ComentariosUser")
+    * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comentarios", mappedBy="ComentariosUser")
     */
 
     private $UserComentarios;
 
     /**
-     * @ORM\ManytoOne(targetEntity="AppBundle\Entity\Temas", inversedBy="TemasUser")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Temas", inversedBy="TemasUser")
      */
 
     private $UserTemas;
@@ -123,51 +123,38 @@ class User extends BaseUser
 
 
 
-    //TEMAS, COMENTARIOS>STR   ,   IMAG>DEB
+    //TEMAS, COMENTARIOS>STR   ,   IMAG>DEB $this->UserComentarios = new ArrayCollection();
 
     /**
-     * Set UserComentarios
+     * Add UserComentarios
      *
-     * @param \Trascastro\UserBundle\Entity\User $UserComentarios
+     * @param \AppBundle\Entity\UserComentarios $UserComentarios
      *
-     * @return ComentariosUser
+     * @return Comentarios
      */
-    public function setUserComentarios(\Trascastro\UserBundle\Entity\User $UserComenatarios = null)
-    {
-        $this->UserComentarios = $UserComentarios;
-        return $this;
-    }
-    /**
-     * Get UserComentarios
-     *
-     * @return \Trascastro\UserBundle\Entity\User
-     */
-    public function getUserComentarios()
-    {
-        return $this->UserComentarios;
-    }
-    /**
-     * añadir UserComentarios
-     *
-     * @param \Trascastro\UserBundle\Entity\User $UserComentarios
-     *
-     * @return ComentariosUser
-     */
-    public function añadirUserComentarios(\Trascastro\UserBundle\Entity\User $UserComentarios)
+    public function addUserComentarios(\AppBundle\Entity\UserComentarios $UserComentarios)
     {
         $this->UserComentarios[] = $UserComentarios;
         return $this;
     }
     /**
-     * borrar UserComentarios
+     * Remove UserComentarios
      *
-     * @param \Trascastro\UserBundle\Entity\User $UserComentarios
+     * @param \AppBundle\Entity\UserComentarios $UserComentarios
      */
-    public function borrarUserComentarios(\Trascastro\UserBundle\Entity\User $UserComentarios)
+    public function removeUserComentarios(\AppBundle\Entity\UserComentarios $UserComentarios)
     {
         $this->UserComentarios->removeElement($UserComentarios);
     }
-
+    /**
+     * Get UserComentarios
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUserComentarios()
+    {
+        return $this->UserComentarios;
+    }
 
 
 

@@ -59,13 +59,13 @@ class Temas
     private $TemasUser;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Comentarios", inversedBy="ComentariosTemas")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comentarios", mappedBy="ComentariosTemas")
      */
 
     private $TemasComentarios;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Secciones", inversedBy="SeccionesTemas")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Secciones", mappedBy="SeccionesTemas")
      */
 
     private $TemasSecciones;
@@ -236,99 +236,72 @@ class Temas
     }
 
 
-    //$this->TemasComentarios = new ArrayCollection(); de muchos a 1 x2
+    //$this->TemasComentarios = new ArrayCollection(); de 1 a muchos
 
 
     /**
-     * Set TemasComentarios
+     * Add TemasComentarios
      *
-     * @param \Appbundle\Entity\Temas $TemasComentarios
-     *
-     * @return Comentarios
-     */
-    public function setTemasComentarios(\Appbundle\Entity\Temas $TemasComentarios = null)
-    {
-        $this->TemasComentarios = $TemasComentarios;
-        return $this;
-    }
-    /**
-     * Get TemasComentarios
-     *
-     * @return \Appbundle\Entity\Temas
-     */
-    public function getTemasComentarios()
-    {
-        return $this->TemasComentarios;
-    }
-    /**
-     * añadir TemasComentarios
-     *
-     * @param \Appbundle\Entity\Temas $TemasComentarios
+     * @param \AppBundle\Entity\TemasComentarios $TemasComentarios
      *
      * @return Comentarios
      */
-    public function añadirTemasComentariose(\Appbundle\Entity\Temas $TemasComentarios)
+    public function addTemasComentarios(\AppBundle\Entity\TemasComentarios $TemasComentarios)
     {
         $this->TemasComentarios[] = $TemasComentarios;
         return $this;
     }
     /**
-     * borrar TemasComentarios
+     * Remove TemasComentarios
      *
-     * @param \Appbundle\Entity\Temas $TemasComentarios
+     * @param \AppBundle\Entity\TemasComentarios $TemasComentarios
      */
-    public function borrarTemasComentarios(\Appbundle\Entity\Temas $TemasComentarios)
+    public function removeTemasComentarios(\AppBundle\Entity\TemasComentarios $TemasComentarios)
     {
         $this->TemasComentarios->removeElement($TemasComentarios);
+    }
+    /**
+     * Get TemasComentarios
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTemasComentarios()
+    {
+        return $this->TemasComentarios;
     }
 
     //$this->TemasSecciones = new ArrayCollection();
 
-
-
     /**
-     * Set TemasSecciones
+     * Add TemasSecciones
      *
-     * @param \Appbundle\Entity\Temas $TemasSecciones
+     * @param \AppBundle\Entity\TemasSecciones $TemasSecciones
      *
      * @return Secciones
      */
-    public function setTemasSecciones(\Appbundle\Entity\Temas $TemasSecciones = null)
-    {
-        $this->TemasSecciones = $TemasSecciones;
-        return $this;
-    }
-    /**
-     * Get TemasSecciones
-     *
-     * @return \Appbundle\Entity\Temas
-     */
-    public function getTemasSecciones()
-    {
-        return $this->TemasSecciones;
-    }
-    /**
-     * añadir TemasSecciones
-     *
-     * @param \Appbundle\Entity\Temas $TemasSecciones
-     *
-     * @return Secciones
-     */
-    public function añadirTemasSecciones(\Appbundle\Entity\Temas $TemasSecciones)
+    public function addTemasSecciones(\AppBundle\Entity\TemasSecciones $TemasSecciones)
     {
         $this->TemasSecciones[] = $TemasSecciones;
         return $this;
     }
     /**
-     * borrar TemasSecciones
+     * Remove TemasSecciones
      *
-     * @param \Appbundle\Entity\Temas $TemasSecciones
+     * @param \AppBundle\Entity\TemasSecciones $TemasSecciones
      */
-    public function borrarTemasSecciones(\Appbundle\Entity\Temas $TemasSecciones)
+    public function removeTemasSecciones(\AppBundle\Entity\TemasSecciones $TemasSecciones)
     {
         $this->TemasSecciones->removeElement($TemasSecciones);
     }
-
+    /**
+     * Get TemasSecciones
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTemasSecciones()
+    {
+        return $this->TemasSecciones;
+    }
 
 
 

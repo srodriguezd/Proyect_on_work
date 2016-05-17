@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use \Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
@@ -45,13 +46,13 @@ class Comentarios
 
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Temas", mappedBy="TemasComentarios", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Temas", inversedBy="TemasComentarios", cascade={"remove"})
      */
 
     private $ComentariosTemas;
 
     /**
-     * @ORM\OneToMany(targetEntity="Trascastro\UserBundle\Entity\User", mappedBy="UserComentarios", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="Trascastro\UserBundle\Entity\User", inversedBy="UserComentarios", cascade={"remove"})
      */
 
     private $ComentariosUser;
@@ -59,10 +60,6 @@ class Comentarios
 
     public function __construct()
     {
-        $this->ComentariosTemas = new ArrayCollection();
-
-        $this->ComentariosUser= new ArrayCollection();
-
 
         $this->createdAt    = new \DateTime();
         $this->updatedAt    = $this->createdAt;
@@ -153,71 +150,94 @@ class Comentarios
 
 
     //AQUI VA LO NUEVO, RELACIONES CON TEMAS Y USER shit3fr
-    // $this->ComentariosTemas = new ArrayCollection();
+    // $this->ComentariosTemas = new ArrayCollection(); many to one
     //$this->ComentariosUser= new ArrayCollection();
     /**
-     * Add ComentariosTemas
+     * Set ComentariosTemas
      *
-     * @param \AppBundle\Entity\Comentarios $ComentariosTemas
+     * @param \Appbundle\Entity\ComentariosTemas $ComentariosTemas
      *
      * @return Temas
      */
-    public function addComentariosTemas(\AppBundle\Entity\Comentarios $ComentariosTemas)
+    public function setComentariosTemas(\Appbundle\Entity\ComentariosTemas $ComentariosTemas = null)
     {
-        $this->ComentariosTemas[] = $ComentariosTemas;
+        $this->ComentariosTemas = $ComentariosTemas;
         return $this;
-    }
-    /**
-     * Remove ComentariosTemas
-     *
-     * @param \AppBundle\Entity\Comentarios $ComentariosTemas
-     */
-    public function removeComentariosTemas(\AppBundle\Entity\Comentarios $ComentariosTemas)
-    {
-        $this->ComentariosTemas->removeElement($ComentariosTemas);
     }
     /**
      * Get ComentariosTemas
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Appbundle\Entity\Comentarios
      */
     public function getComentariosTemas()
     {
         return $this->ComentariosTemas;
     }
+    /**
+     * añadir ComentariosTemas
+     *
+     * @param \Appbundle\Entity\ComentariosTemas $ComentariosTemas
+     *
+     * @return Temas
+     */
+    public function añadirComentariosTemas(\Appbundle\Entity\ComentariosTemas $ComentariosTemas)
+    {
+        $this->ComentariosTemas[] = $ComentariosTemas;
+        return $this;
+    }
+    /**
+     * borrar ComentariosTemas
+     *
+     * @param \Appbundle\Entity\ComentariosTemas $ComentariosTemas
+     */
+    public function borrarComentariosTemas(\Appbundle\Entity\ComentariosTemas $ComentariosTemas)
+    {
+        $this->ComentariosTemas->removeElement($ComentariosTemas);
+    }
 
 
-
-
+    //private $ComentariosUser;
 
     /**
-     * Add ComentariosUser
+     * Set ComentariosUser
      *
-     * @param \AppBundle\Entity\Comentarios  $ComentariosUser
+     * @param \Appbundle\Entity\ComentariosUser $ComentariosUser
      *
      * @return User
      */
-    public function addComentariosUser(\AppBundle\Entity\Comentarios $ComentariosUser)
+    public function setComentariosUser(\Appbundle\Entity\ComentariosUser $ComentariosUser = null)
+    {
+        $this->ComentariosUser = $ComentariosUser;
+        return $this;
+    }
+    /**
+     * Get ComentariosUser
+     *
+     * @return \Appbundle\Entity\Comentarios
+     */
+    public function getComentariosUser()
+    {
+        return $this->ComentariosUser;
+    }
+    /**
+     * añadir ComentariosUser
+     *
+     * @param \Appbundle\Entity\ComentariosUser $ComentariosUser
+     *
+     * @return User
+     */
+    public function añadirComentariosUser(\Appbundle\Entity\ComentariosUsers $ComentariosUser)
     {
         $this->ComentariosUser[] = $ComentariosUser;
         return $this;
     }
     /**
-     * Remove ComentariosUser
+     * borrar ComentariosUser
      *
-     * @param \AppBundle\Entity\Comentarios  $ComentariosUser
+     * @param \Appbundle\Entity\ComentariosUser $ComentariosUser
      */
-    public function removeComentariosUser(\AppBundle\Entity\Comentarios  $ComentariosUser)
+    public function borrarComentariosUser(\Appbundle\Entity\ComentariosUser $ComentariosUser)
     {
-        $this->ComentariosUser->removeElement($ComentariosUser);
-    }
-    /**
-     * Get ComentariosUser
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getComentariosUser()
-    {
-        return $this->ComentariosUser;
+        $this->ComentariosTemas->removeElement($ComentariosUser);
     }
 }

@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 
 use Doctrine\ORM\Mapping as ORM;
+use \Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Secciones
@@ -44,14 +45,13 @@ class Secciones
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Temas", mappedBy="TemasSecciones", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Temas", inversedBy="TemasSecciones", cascade={"remove"})
      */
 
     private $SeccionesTemas;
 
     public function __construct()
     {
-        $this->SeccionesTemas         = new ArrayCollection();
 
         $this->createdAt    = new \DateTime();
         $this->updatedAt    = $this->createdAt;
@@ -142,36 +142,48 @@ class Secciones
 
 
     //AQUI VA LO NUEVO, RELACIONES CON TEMAS shit3fr
-    //$this->SeccionesTemas         = new ArrayCollection();
+    //$this->SeccionesTemas         = new ArrayCollection(); de muchos a 1
 
     /**
-     * Add SeccionesTemas
+     * Set SeccionesTemas
      *
-     * @param \AppBundle\Entity\Secciones $SeccionesTemas
+     * @param \Appbundle\Entity\SeccionesTemas  $SeccionesTemas
      *
      * @return Temas
      */
-    public function addSeccionesTemas (\AppBundle\Entity\Secciones $SeccionesTemas)
+    public function setSeccionesTemas (\Appbundle\Entity\SeccionesTemas $SeccionesTemas  = null)
     {
-        $this->SeccionesTemas[] = $SeccionesTemas;
+        $this->SeccionesTemas  = $SeccionesTemas ;
         return $this;
-    }
-    /**
-     * Remove SeccionesTemas
-     *
-     * @param \AppBundle\Entity\Secciones $SeccionesTemas
-     */
-    public function removeSeccionesTemas(\AppBundle\Entity\Secciones $SeccionesTemas)
-    {
-        $this->SeccionesTemas->removeElement($SeccionesTemas);
     }
     /**
      * Get SeccionesTemas
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Appbundle\Entity\Secciones
      */
-    public function getSeccionesTemas()
+    public function getSeccionesTemas ()
     {
-        return $this->SeccionesTemas;
+        return $this->SeccionesTemas ;
+    }
+    /**
+     * añadir SeccionesTemas
+     *
+     * @param \Appbundle\Entity\SeccionesTemas  $SeccionesTemas
+     *
+     * @return Temas
+     */
+    public function añadirSeccionesTemas (\Appbundle\Entity\SeccionesTemas  $SeccionesTemas )
+    {
+        $this->SeccionesTemas [] = $SeccionesTemas ;
+        return $this;
+    }
+    /**
+     * borrar SeccionesTemas
+     *
+     * @param \Appbundle\Entity\SeccionesTemas  $SeccionesTemas
+     */
+    public function borrarSeccionesTemas (\Appbundle\Entity\SeccionesTemas  $SeccionesTemas )
+    {
+        $this->SeccionesTemas->removeElement($SeccionesTemas);
     }
 }
