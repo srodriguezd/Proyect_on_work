@@ -1,0 +1,49 @@
+
+
+<div class="rounded-box margin-bottom-lg"> {# tema #}
+    <div style="float: right;">
+        {# Without voter #}
+        {% if tema.TemasUser == app.user or is_granted('ROLE_ADMIN') %}
+        {#{% if is_granted('EDIT', tema) %}  using voter const: constant('AppBundle\\Security\\ArticleVoter::EDIT_ARTICLE') #}
+            <a href="{{ path('app_tema_edit', {'id': tema.id}) }}"><img src="{{ asset('icons/glyphicons-151-edit.png') }}" alt="edit tema" /></a>
+            {% if is_granted('ROLE_ADMIN') %}
+                 <a href="{{ path('app_admin_tema_remove', {'id': tema.id}) }}"><img src="{{ asset('icons/glyphicons-198-remove.png') }}" alt="remove tema" /></a>
+            {% endif %}
+        {% endif %}
+
+    </div>
+
+    </div>
+    <h1 style="margin-top: 0"><a style="color: inherit; text-decoration: inherit;" href="{{ path('app_tema_show', {'id': tema.id}) }}">{{ tema.nombreTema }}</a></h1>
+    <div>
+        <strong>Usuario:</strong> {{ tema.TemasUser}}
+        <strong>Created:</strong> {{ tema.createdAt|date("d/m/Y H:i:s") }}
+        <strong>Updated:</strong> {{ tema.updatedAt|date("d/m/Y H:i:s") }}
+
+    </div>
+
+{% if show_content is defined %}
+    <div id="tema-content" style="margin-bottom:20px;padding: 0 20px;font-size: medium">
+        {{ tema.textoTema }}
+    </div>
+{% endif %}
+<div style="border-top:1px solid #DDD; padding-top: 10px;">
+
+    <div style="margin: 10px 0;float: right">
+        {{ tema.TemasComentarios.count }} <a href="{{ path('app_tema_show', {'id': tema.id}) }}"><img src="{{ asset('icons/glyphicons-310-comments.png') }}" /></a>
+        {#{% if show_content is not defined and tema.TemasComentarios.count > 0 %}
+            <a href="{{ path('app_temas_byUser', {'username': tema.TemasComentarios.last.TemasUser}) }}">@{{ tema.TemasComentarios.last.TemasUser }}</a> {{ tema.TemasComentarios.last.createdAt|time_diff }}
+        {% endif %}#}
+    </div>
+    <div style="clear: both"></div>
+</div>
+</div> {# end article#}
+
+{% if show_content is defined %}
+    {{ render(controller('AppBundle:Comentarios:showForm', {'id': tema.id})) }}
+{% endif %}
+
+{% if comentarios is defined %}
+    {% include ':comentarios:showComentariosByTema.html.twig' with {'comentarios': comentarios} %}
+{% endif %}
+

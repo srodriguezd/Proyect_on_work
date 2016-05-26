@@ -37,6 +37,8 @@ class User extends BaseUser
      */
     private $createdAt;
 
+
+
     /**
      * @var \DateTime
      *
@@ -52,12 +54,12 @@ class User extends BaseUser
 
     /**
     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comentarios", mappedBy="ComentariosUser")
-    */
-
+     * @ORM\Column(name="usercomentarios")
+     */
     private $UserComentarios;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Temas", inversedBy="TemasUser")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Temas", mappedBy="TemasUser")
      */
 
     private $UserTemas;
@@ -121,6 +123,22 @@ class User extends BaseUser
         return $this->username;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
 
 
     //TEMAS, COMENTARIOS>STR   ,   IMAG>DEB $this->UserComentarios = new ArrayCollection();
@@ -128,11 +146,11 @@ class User extends BaseUser
     /**
      * Add UserComentarios
      *
-     * @param \AppBundle\Entity\UserComentarios $UserComentarios
+     * @param \Trascastro\UserBundle\Entity\User $UserComentarios
      *
      * @return Comentarios
      */
-    public function addUserComentarios(\AppBundle\Entity\UserComentarios $UserComentarios)
+    public function addUserComentarios(\Appbundle\Entity\Comentarios $UserComentarios)
     {
         $this->UserComentarios[] = $UserComentarios;
         return $this;
@@ -140,9 +158,9 @@ class User extends BaseUser
     /**
      * Remove UserComentarios
      *
-     * @param \AppBundle\Entity\UserComentarios $UserComentarios
+     * @param \Trascastro\UserBundle\Entity\User $UserComentarios
      */
-    public function removeUserComentarios(\AppBundle\Entity\UserComentarios $UserComentarios)
+    public function removeUserComentarios(\Trascastro\UserBundle\Entity\User $UserComentarios)
     {
         $this->UserComentarios->removeElement($UserComentarios);
     }
@@ -163,7 +181,7 @@ class User extends BaseUser
      *
      * @param \Trascastro\UserBundle\Entity\User $UserTemas
      *
-     * @return TemasUser
+     * @return Temas
      */
     public function setUserTemas(\Trascastro\UserBundle\Entity\User $UserTemas = null)
     {
@@ -184,7 +202,7 @@ class User extends BaseUser
      *
      * @param \Trascastro\UserBundle\Entity\User $UserTemas
      *
-     * @return TemasUser
+     * @return Temas
      */
     public function añadirUserTemas(\Trascastro\UserBundle\Entity\User $UserTemas)
     {

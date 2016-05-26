@@ -14,6 +14,10 @@ class IndexController extends Controller
     {
         return $this->render(':index:index.html.twig');
     }
+
+
+
+
     /**
      * @Route("/upload", name="app_index_upload")
      */

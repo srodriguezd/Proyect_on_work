@@ -14,6 +14,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Temas
 {
+    const PAGINATION_ITEMS = 4;
+
     /**
      * @var int
      *
@@ -53,7 +55,7 @@ class Temas
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="Trascastro\UserBundle\Entity\User", mappedBy="UserTemas", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="Trascastro\UserBundle\Entity\User", inversedBy="UserTemas", cascade={"remove"})
      */
 
     private $TemasUser;
@@ -73,7 +75,6 @@ class Temas
 
     public function __construct()
     {
-        $this->TemasUser = new ArrayCollection();
         $this->TemasComentarios = new ArrayCollection();
         $this->TemasSecciones = new ArrayCollection();
 
@@ -205,35 +206,21 @@ class Temas
     //$this->TemasUser = new ArrayCollection(); uno a muchos
 
     /**
-     * Add TemasUser
-     *
-     * @param \AppBundle\Entity\Temas $TemasUser
-     *
-     * @return User
-     */
-    public function addTemasUser(\AppBundle\Entity\Temas $TemasUser)
-    {
-        $this->TemasUser[] = $TemasUser;
-        return $this;
-    }
-    /**
-     * Remove TemasUser
-     *
-     * @param \AppBundle\Entity\Temas $TemasUser
-     */
-    public function removeTemasUser(\AppBundle\Entity\Temas $TemasUser)
-    {
-        $this->TemasUser->removeElement($TemasUser);
-    }
-    /**
-     * Get TemasUser
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return mixed
      */
     public function getTemasUser()
     {
         return $this->TemasUser;
     }
+
+    /**
+     * @param mixed $TemasUser
+     */
+    public function setTemasUser($TemasUser)
+    {
+        $this->TemasUser = $TemasUser;
+    }
+
 
 
     //$this->TemasComentarios = new ArrayCollection(); de 1 a muchos
@@ -242,11 +229,11 @@ class Temas
     /**
      * Add TemasComentarios
      *
-     * @param \AppBundle\Entity\TemasComentarios $TemasComentarios
+     * @param \AppBundle\Entity\Temas $TemasComentarios
      *
      * @return Comentarios
      */
-    public function addTemasComentarios(\AppBundle\Entity\TemasComentarios $TemasComentarios)
+    public function addTemasComentarios(\AppBundle\Entity\Temas $TemasComentarios)
     {
         $this->TemasComentarios[] = $TemasComentarios;
         return $this;
@@ -254,9 +241,9 @@ class Temas
     /**
      * Remove TemasComentarios
      *
-     * @param \AppBundle\Entity\TemasComentarios $TemasComentarios
+     * @param \AppBundle\Entity\Temas $TemasComentarios
      */
-    public function removeTemasComentarios(\AppBundle\Entity\TemasComentarios $TemasComentarios)
+    public function removeTemasComentarios(\AppBundle\Entity\Temas $TemasComentarios)
     {
         $this->TemasComentarios->removeElement($TemasComentarios);
     }
@@ -275,11 +262,11 @@ class Temas
     /**
      * Add TemasSecciones
      *
-     * @param \AppBundle\Entity\TemasSecciones $TemasSecciones
+     * @param \AppBundle\Entity\Temas $TemasSecciones
      *
      * @return Secciones
      */
-    public function addTemasSecciones(\AppBundle\Entity\TemasSecciones $TemasSecciones)
+    public function addTemasSecciones(\AppBundle\Entity\Temas $TemasSecciones)
     {
         $this->TemasSecciones[] = $TemasSecciones;
         return $this;
@@ -287,9 +274,9 @@ class Temas
     /**
      * Remove TemasSecciones
      *
-     * @param \AppBundle\Entity\TemasSecciones $TemasSecciones
+     * @param \AppBundle\Entity\Temas $TemasSecciones
      */
-    public function removeTemasSecciones(\AppBundle\Entity\TemasSecciones $TemasSecciones)
+    public function removeTemasSecciones(\AppBundle\Entity\Temas $TemasSecciones)
     {
         $this->TemasSecciones->removeElement($TemasSecciones);
     }
@@ -311,4 +298,52 @@ class Temas
 
 
 
+
+    /**
+     * Add temasComentario
+     *
+     * @param \AppBundle\Entity\Comentarios $temasComentario
+     *
+     * @return Temas
+     */
+    public function addTemasComentario(\AppBundle\Entity\Comentarios $temasComentario)
+    {
+        $this->TemasComentarios[] = $temasComentario;
+
+        return $this;
+    }
+
+    /**
+     * Remove temasComentario
+     *
+     * @param \AppBundle\Entity\Comentarios $temasComentario
+     */
+    public function removeTemasComentario(\AppBundle\Entity\Comentarios $temasComentario)
+    {
+        $this->TemasComentarios->removeElement($temasComentario);
+    }
+
+    /**
+     * Add temasSeccione
+     *
+     * @param \AppBundle\Entity\Secciones $temasSeccione
+     *
+     * @return Temas
+     */
+    public function addTemasSeccione(\AppBundle\Entity\Secciones $temasSeccione)
+    {
+        $this->TemasSecciones[] = $temasSeccione;
+
+        return $this;
+    }
+
+    /**
+     * Remove temasSeccione
+     *
+     * @param \AppBundle\Entity\Secciones $temasSeccione
+     */
+    public function removeTemasSeccione(\AppBundle\Entity\Secciones $temasSeccione)
+    {
+        $this->TemasSecciones->removeElement($temasSeccione);
+    }
 }

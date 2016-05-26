@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class TemasType extends AbstractType
 {
@@ -15,6 +16,8 @@ class TemasType extends AbstractType
         $builder
             ->add('nombreTema', TextType::class, ['error_bubbling' => true, 'attr' => ['class' => 'anyClass']])
             ->add('textoTema', TextareaType::class, ['error_bubbling' => true]) //text area caja coment grande
+            ->add('save', SubmitType::class,
+                    array('label'=>'Send'))
         ;
 
     }

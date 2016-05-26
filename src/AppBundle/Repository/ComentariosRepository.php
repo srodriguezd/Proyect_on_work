@@ -10,4 +10,41 @@ namespace AppBundle\Repository;
  */
 class ComentariosRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function queryComentariosByTema($id)
+    {
+        return $this->createQueryBuilder('c')
+            ->leftJoin('c.ComentariosTemas', 'ComentariosTemas')
+            ->andWhere('ComentariosTemas.id = :id')
+            ->setParameter('id', $id)
+            ->addOrderBy('c.createdAt', 'DESC')
+            ->getQuery()
+            ;
+    }
+    public function comentariosByTema($id)
+    {
+        return $this->queryComentariosByTema($id)->execute();
+    }
+
+    public function removeComentariosByTema($id)
+    {
+        $this->createQueryBuilder('c')
+            ->delete()
+            ->leftJoin('c.ComentariosTemas', 'ComentariosTemas')
+            ->andWhere('ComentariosTemas.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->execute()
+        ;
+    }
+    public function lastComments()
+    {
+        return $this->createQueryBuilder('c')
+            ->addOrderBy('c.createdAt', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->execute()
+            ;
+    }
+
 }

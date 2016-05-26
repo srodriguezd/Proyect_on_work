@@ -1,0 +1,7 @@
+{% extends '::base.html.twig' %}
+
+{% block headTitle %}Show Tema{% endblock %}
+
+{% block body %}
+    {% include':tema:tema_content.html.twig' with {'show_content': true, 'comentarios': comentarios} %}
+{% endblock %}

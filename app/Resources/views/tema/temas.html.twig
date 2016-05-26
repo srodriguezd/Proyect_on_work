@@ -1,0 +1,14 @@
+{% extends '::base.html.twig' %}
+
+{% block headTitle %}{{  title  }}{% endblock %}
+
+{% block body %}
+    {% for tema in temas %}
+        {% include ':tema:tema_content.html.twig' %}
+    {% endfor %}
+    {% if not doPagination is defined %}
+        <div class="navigation">
+            {{ knp_pagination_render(temas) }}
+        </div>
+    {% endif %}
+{% endblock %}

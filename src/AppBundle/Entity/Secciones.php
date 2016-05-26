@@ -147,11 +147,11 @@ class Secciones
     /**
      * Set SeccionesTemas
      *
-     * @param \Appbundle\Entity\SeccionesTemas  $SeccionesTemas
+     * @param \Appbundle\Entity\Secciones  $SeccionesTemas
      *
      * @return Temas
      */
-    public function setSeccionesTemas (\Appbundle\Entity\SeccionesTemas $SeccionesTemas  = null)
+    public function setSeccionesTemas (\Appbundle\Entity\Secciones $SeccionesTemas  = null)
     {
         $this->SeccionesTemas  = $SeccionesTemas ;
         return $this;
@@ -168,11 +168,11 @@ class Secciones
     /**
      * añadir SeccionesTemas
      *
-     * @param \Appbundle\Entity\SeccionesTemas  $SeccionesTemas
+     * @param \Appbundle\Entity\Secciones  $SeccionesTemas
      *
      * @return Temas
      */
-    public function añadirSeccionesTemas (\Appbundle\Entity\SeccionesTemas  $SeccionesTemas )
+    public function añadirSeccionesTemas (\Appbundle\Entity\Secciones  $SeccionesTemas )
     {
         $this->SeccionesTemas [] = $SeccionesTemas ;
         return $this;
@@ -180,9 +180,9 @@ class Secciones
     /**
      * borrar SeccionesTemas
      *
-     * @param \Appbundle\Entity\SeccionesTemas  $SeccionesTemas
+     * @param \Appbundle\Entity\Secciones  $SeccionesTemas
      */
-    public function borrarSeccionesTemas (\Appbundle\Entity\SeccionesTemas  $SeccionesTemas )
+    public function borrarSeccionesTemas (\Appbundle\Entity\Secciones  $SeccionesTemas )
     {
         $this->SeccionesTemas->removeElement($SeccionesTemas);
     }

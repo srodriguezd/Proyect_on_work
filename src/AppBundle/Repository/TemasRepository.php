@@ -10,4 +10,37 @@ namespace AppBundle\Repository;
  */
 class TemasRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function queryAllTemas()
+    {
+        return $this->createQueryBuilder('t')
+            ->addOrderBy('t.createdAt', 'DESC')
+            ->leftJoin('t.TemasUser', 'TemasUser')
+            ->addSelect('TemasUser')
+            ->leftJoin('t.TemasComentarios', 'TemasComentarios')
+            ->addSelect('TemasComentarios')
+            ->getQuery()
+            ;
+    }
+    public function allTemas()
+    {
+        return $this->queryAllTemas()->execute();
+    }
+
+    public function queryTemasByUserId($id)
+    {
+        $qb = $this->createQueryBuilder('t')
+            ->leftJoin('t.TemasUser', 'author') // use contextual help to see the associations
+            ->andWhere('TemasUser.id = :id')
+            ->setParameter('id', $id)
+            ->addOrderBy('t.createdAt', 'DESC')
+            ->addSelect('TemasUser') // avoid lazy loading in views
+            ->getQuery()
+        ;
+        return $qb;
+    }
+    public function temasByUserId($id)
+    {
+        return $this->queryTemasByUserId($id)->execute();
+    }
 }

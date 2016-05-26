@@ -8,3 +8,7 @@ app.index:
 app.tema:
     resource: "@AppBundle/Controller/TemasController.php"
     type: annotation
+
+app.comentario:
+    resource: "@AppBundle/Controller/ComentariosController.php"
+    type: annotation

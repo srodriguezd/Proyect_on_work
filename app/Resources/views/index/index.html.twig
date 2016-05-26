@@ -1,8 +1,19 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <hi1>Notice me, sempai</hi1>
-    <ul>
-        <li><a href="{{ path('app_noticeme') }}">Entra, >click aquí< </a>   </li>
-    </ul>
+    <div>
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <div>
+                <span>{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</span> | <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="{{ path('app_tema_temas') }}">Temas</a> - <a href="{{ path('app_tema_new') }}">New Tema</a></li>
+
+                </ul>
+            </div>
+        {% else %}
+            <span>You are anonymous</span> | <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a> - <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+        {% endif %}
+    </div>
 {% endblock %}

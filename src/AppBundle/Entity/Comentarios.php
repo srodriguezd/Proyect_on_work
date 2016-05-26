@@ -14,6 +14,9 @@ use \Doctrine\Common\Collections\ArrayCollection;
  */
 class Comentarios
 {
+
+    const PAGINATION_ITEMS = 4;
+
     /**
      * @var int
      *
@@ -53,6 +56,8 @@ class Comentarios
 
     /**
      * @ORM\ManyToOne(targetEntity="Trascastro\UserBundle\Entity\User", inversedBy="UserComentarios", cascade={"remove"})
+     *
+     * @ORM\Column(name="comentariosuser", length=255, nullable=true)
      */
 
     private $ComentariosUser;
@@ -155,11 +160,11 @@ class Comentarios
     /**
      * Set ComentariosTemas
      *
-     * @param \Appbundle\Entity\ComentariosTemas $ComentariosTemas
+     * @param \Appbundle\Entity\Comentarios $ComentariosTemas
      *
      * @return Temas
      */
-    public function setComentariosTemas(\Appbundle\Entity\ComentariosTemas $ComentariosTemas = null)
+    public function setComentariosTemas(\Appbundle\Entity\Temas $ComentariosTemas = null)
     {
         $this->ComentariosTemas = $ComentariosTemas;
         return $this;
@@ -176,11 +181,11 @@ class Comentarios
     /**
      * añadir ComentariosTemas
      *
-     * @param \Appbundle\Entity\ComentariosTemas $ComentariosTemas
+     * @param \Appbundle\Entity\Comentarios $ComentariosTemas
      *
      * @return Temas
      */
-    public function añadirComentariosTemas(\Appbundle\Entity\ComentariosTemas $ComentariosTemas)
+    public function añadirComentariosTemas(\Appbundle\Entity\Comentarios $ComentariosTemas)
     {
         $this->ComentariosTemas[] = $ComentariosTemas;
         return $this;
@@ -188,9 +193,9 @@ class Comentarios
     /**
      * borrar ComentariosTemas
      *
-     * @param \Appbundle\Entity\ComentariosTemas $ComentariosTemas
+     * @param \Appbundle\Entity\Comentarios $ComentariosTemas
      */
-    public function borrarComentariosTemas(\Appbundle\Entity\ComentariosTemas $ComentariosTemas)
+    public function borrarComentariosTemas(\Appbundle\Entity\Comentarios $ComentariosTemas)
     {
         $this->ComentariosTemas->removeElement($ComentariosTemas);
     }
@@ -201,11 +206,11 @@ class Comentarios
     /**
      * Set ComentariosUser
      *
-     * @param \Appbundle\Entity\ComentariosUser $ComentariosUser
+     * @param \Appbundle\Entity\Comentarios $ComentariosUser
      *
      * @return User
      */
-    public function setComentariosUser(\Appbundle\Entity\ComentariosUser $ComentariosUser = null)
+    public function setComentariosUser(\Trascastro\UserBundle\Entity\User $ComentariosUser = null)
     {
         $this->ComentariosUser = $ComentariosUser;
         return $this;
@@ -219,24 +224,25 @@ class Comentarios
     {
         return $this->ComentariosUser;
     }
+
     /**
      * añadir ComentariosUser
      *
-     * @param \Appbundle\Entity\ComentariosUser $ComentariosUser
+     * @param \Appbundle\Entity\Comentarios $ComentariosUser
      *
      * @return User
      */
-    public function añadirComentariosUser(\Appbundle\Entity\ComentariosUsers $ComentariosUser)
+    public function añadirComentariosUser(\Trascastro\UserBundle\Entity\User $ComentariosUser = null)
     {
-        $this->ComentariosUser[] = $ComentariosUser;
+        $this->ComentariosUser = $ComentariosUser;
         return $this;
     }
     /**
      * borrar ComentariosUser
      *
-     * @param \Appbundle\Entity\ComentariosUser $ComentariosUser
+     * @param \Appbundle\Entity\Comentarios $ComentariosUser
      */
-    public function borrarComentariosUser(\Appbundle\Entity\ComentariosUser $ComentariosUser)
+    public function borrarComentariosUser(\Appbundle\Entity\Comentarios $ComentariosUser)
     {
         $this->ComentariosTemas->removeElement($ComentariosUser);
     }
