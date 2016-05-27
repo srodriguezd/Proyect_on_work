@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class TemasType extends AbstractType
 {
@@ -16,6 +17,15 @@ class TemasType extends AbstractType
         $builder
             ->add('nombreTema', TextType::class, ['error_bubbling' => true, 'attr' => ['class' => 'anyClass']])
             ->add('textoTema', TextareaType::class, ['error_bubbling' => true]) //text area caja coment grande
+
+            ->add('prodFile', VichImageType::class,[
+                'required'      => false,
+                'allow_delete'  => true, // not mandatory, default is true
+                'download_link' => true, // not mandatory, default is true
+            ])
+
+
+
             ->add('save', SubmitType::class,
                     array('label'=>'Send'))
         ;

@@ -26,7 +26,7 @@ class ComentariosRepository extends \Doctrine\ORM\EntityRepository
         return $this->queryComentariosByTema($id)->execute();
     }
 
-    public function removeComentariosByTema($id)
+ /*   public function removeComentariosByTema($id)
     {
         $this->createQueryBuilder('c')
             ->delete()
@@ -36,7 +36,8 @@ class ComentariosRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->execute()
         ;
-    }
+    }*/
+
     public function lastComments()
     {
         return $this->createQueryBuilder('c')

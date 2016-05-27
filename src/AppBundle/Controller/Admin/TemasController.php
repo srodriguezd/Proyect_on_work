@@ -10,15 +10,18 @@ class TemasController extends Controller
 {
     /**
      *
-     * @Route("/products_remove/{id}", name="app_admin_tema_remove")
+     * @Route("/tema_remove/", name="app_admin_tema_remove")
      * @ParamConverter(name="Temas", class="AppBundle:Temas")
      */
     public function removeAction(Temas $tema)
     {
         $m = $this->getDoctrine()->getManager();
-        $m->remove($tema);
+        $temm = $m->getRepository('AppBundle:Temas')->find($tema);
+        $m->remove($temm);
         $m->flush();
-        $this->addFlash('messages', 'Eliminado');
+
+
         return $this->redirectToRoute('app_tema_temas');
+
     }
 }

@@ -33,6 +33,7 @@ class Comentarios
      */
     private $comentario;
 
+
     /**
      * @var \DateTime
      *
@@ -43,19 +44,19 @@ class Comentarios
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="upated_at", type="datetime")
+     * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Temas", inversedBy="TemasComentarios", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Temas", inversedBy="TemasComentarios")
      */
 
     private $ComentariosTemas;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Trascastro\UserBundle\Entity\User", inversedBy="UserComentarios", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="Trascastro\UserBundle\Entity\User", inversedBy="UserComentarios")
      *
      * @ORM\Column(name="comentariosuser", length=255, nullable=true)
      */
@@ -65,7 +66,6 @@ class Comentarios
 
     public function __construct()
     {
-
         $this->createdAt    = new \DateTime();
         $this->updatedAt    = $this->createdAt;
 
@@ -106,11 +106,18 @@ class Comentarios
     }
 
     /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAtValue() {
+        $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
      *
-     * @return Comentarios
+     * @return Temas
      */
     public function setCreatedAt($createdAt)
     {
@@ -134,12 +141,11 @@ class Comentarios
      *
      * @param \DateTime $updatedAt
      *
-     * @return Comentarios
+     * @return Temas
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt()
     {
-        $this->updatedAt = $updatedAt;
-
+        $this->updatedAt = new \Datetime("now");
         return $this;
     }
 

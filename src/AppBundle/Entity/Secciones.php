@@ -45,7 +45,7 @@ class Secciones
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Temas", inversedBy="TemasSecciones", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Temas", inversedBy="TemasSecciones")
      */
 
     private $SeccionesTemas;

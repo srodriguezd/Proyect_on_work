@@ -20,6 +20,16 @@
         <strong>Created:</strong> {{ tema.createdAt|date("d/m/Y H:i:s") }}
         <strong>Updated:</strong> {{ tema.updatedAt|date("d/m/Y H:i:s") }}
 
+        {% if tema.imageName %}
+
+        <div style="border-top:1px solid #DDD; padding-top: 10px;">
+            <img style="width: 140px; height: 140px;" data-src="holder.js/140x140" src="/images/upload/{{ tema.imageName }}" title="{{ tema.prodFile }}" class="img-rounded" alt="140x140">
+        </div>
+
+        {% else %}
+            
+        {% endif %}
+
     </div>
 
 {% if show_content is defined %}

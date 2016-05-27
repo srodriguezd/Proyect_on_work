@@ -12,3 +12,15 @@ app.tema:
 app.comentario:
     resource: "@AppBundle/Controller/ComentariosController.php"
     type: annotation
+
+app.tema2:
+    resource: "@AppBundle/Controller/Admin/TemasController.php"
+    type: annotation
+
+app.comentario2:
+    resource: "@AppBundle/Controller/Admin/ComentariosController.php"
+    type: annotation
+
+app.index2:
+    resource: "@AppBundle/Controller/Admin/IndexController.php"
+    type: annotation
