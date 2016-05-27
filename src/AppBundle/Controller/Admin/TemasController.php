@@ -10,7 +10,7 @@ class TemasController extends Controller
 {
     /**
      *
-     * @Route("/tema_remove/", name="app_admin_tema_remove")
+     * @Route("/tema_remove/{id}", name="app_admin_tema_remove")
      * @ParamConverter(name="Temas", class="AppBundle:Temas")
      */
     public function removeAction(Temas $tema)
@@ -19,7 +19,6 @@ class TemasController extends Controller
         $temm = $m->getRepository('AppBundle:Temas')->find($tema);
         $m->remove($temm);
         $m->flush();
-
 
         return $this->redirectToRoute('app_tema_temas');
 
