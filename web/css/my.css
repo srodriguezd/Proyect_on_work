@@ -1,0 +1,46 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+#titulo {
+   /* padding-bottom: 500px !important;*/
+
+    font-size: 45px;
+    margin-bottom: 30px;
+    color: #2b542c !important;
+
+}
+#infogen{
+    margin-top: 15px;
+    font-size: 15px;
+    margin-bottom: 10px;
+
+}
+
+#imagenes{
+    margin: 20px;
+    height: 600px;
+}
+
+#tocho{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#arriba1{
+    margin-left: 10px;
+    font-size: 17px;
+
+
+}
+
+#arriba2{
+    margin-left: 5px;
+    font-size: 17px;
+
+}
+
+
+.center-block {
+
+}
+/*************/
+

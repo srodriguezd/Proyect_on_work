@@ -26,7 +26,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav id="alto" class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -36,13 +36,14 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="{{ path('app_index_index') }}">Gotcha, Viladecans</a>
+
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li></li>
-                <li></li>
+                <a class="navbar-brand" id="arriba1" href="{{ path('app_tema_temas') }}">Temas</a>
+                <a  class="navbar-brand" id="arriba2" href="{{ path('app_tema_new') }}">Nuevo Tema</a>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -57,34 +58,21 @@
 
 <div class="container">
     <ul>
-        {% for message in app.session.flashBag.get('messages') %}
+        {% for message in app.session.flashBag.get('messages') %} <!--POR AQUI -->
             <li>{{ message }}</li>
+
+
         {% endfor %}
     </ul>
 </div>
 
 <div class="container">
-    <div class="margin-bottom-md"></div>
     <div class="row">
         <div class="col-md-8">
             {% block body %}{% endblock %}
         </div>
-        <div class="col-md-4">
-            {% block sidebar %}
-                <div class="container-fluid">
-                    <div class="row margin-bottom-md">
-                        <div class="col-md-12">
-                            <a class="btn btn-default" style="font-size:x-large;width: 100%" href="">Sidebar</a>
-                        </div>
-                    </div>
-                </div>
-            {% endblock %}
-        </div>
+
     </div>
-    <hr>
-    <footer>
-        <p class="text-right">&copy; 2016 Ane</p>
-    </footer>
 </div> <!-- /container -->
 
 {% block javascripts %}
@@ -96,5 +84,6 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="{{ asset('js/jquery.min.js') }}"><\/script>')</script>
+<link href="{{ asset('css/my.css') }}" rel="stylesheet">
 </body>
 </html>

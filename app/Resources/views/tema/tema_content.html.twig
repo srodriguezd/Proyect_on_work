@@ -1,29 +1,29 @@
 
-
-<div class="rounded-box margin-bottom-lg"> {# tema #}
-    <div style="float: right;">
+<div class="row>">
+<div id="tocho" class="rounded-box margin-bottom-lg col-lg-12 container-fluid" style="margin-top: 40px"> {# tema #}
+    <div style="float: right; margin-top: 20px">
         {# Without voter #}
         {% if tema.TemasUser == app.user or is_granted('ROLE_ADMIN') %}
         {#{% if is_granted('EDIT', tema) %}  using voter const: constant('AppBundle\\Security\\ArticleVoter::EDIT_ARTICLE') #}
-            <a href="{{ path('app_tema_edit', {'id': tema.id}) }}"><img src="{{ asset('icons/glyphicons-151-edit.png') }}" alt="edit tema" /></a>
+            <a href="{{ path('app_tema_edit', {'id': tema.id}) }}"><img src="{{ asset('icons/glyphicons-151-edit.png') }}"  /></a>
             {% if is_granted('ROLE_ADMIN') %}
-                 <a href="{{ path('app_admin_tema_remove', {'id': tema.id}) }}"><img src="{{ asset('icons/glyphicons-198-remove.png') }}" alt="remove tema" /></a>
+                 <a href="{{ path('app_admin_tema_remove', {'id': tema.id}) }}"><img src="{{ asset('icons/glyphicons-198-remove.png') }}"  /></a>
             {% endif %}
         {% endif %}
 
     </div>
 
-    </div>
-    <h1 style="margin-top: 0"><a style="color: inherit; text-decoration: inherit;" href="{{ path('app_tema_show', {'id': tema.id}) }}">{{ tema.nombreTema }}</a></h1>
+
+    <h1 style="margin-top: 0"><a id="titulo" style="color: inherit; text-decoration: inherit;"  href="{{ path('app_tema_show', {'id': tema.id}) }}">{{ tema.nombreTema }}</a></h1>
     <div>
-        <strong>Usuario:</strong> {{ tema.TemasUser}}
-        <strong>Created:</strong> {{ tema.createdAt|date("d/m/Y H:i:s") }}
-        <strong>Updated:</strong> {{ tema.updatedAt|date("d/m/Y H:i:s") }}
+        <strong id="infogen">Usuario:</strong> {{ tema.TemasUser}}
+        <strong id="infogen">Creado:</strong> {{ tema.createdAt|date("d/m/Y H:i:s") }}
+        <strong id="infogen">Modidicado:</strong> {{ tema.updatedAt|date("d/m/Y H:i:s") }}
 
         {% if tema.imageName %}
 
-        <div style="border-top:1px solid #DDD; padding-top: 10px;">
-            <img style="width: 140px; height: 140px;" data-src="holder.js/140x140" src="/images/upload/{{ tema.imageName }}" title="{{ tema.prodFile }}" class="img-rounded" alt="140x140">
+        <div style="border-top:1px solid #DDD; padding-top: 20px; margin: 20px ">
+            <img class="img-responsive img-rounded" style="width: 710px; margin: 0 auto" data-src="holder.js/700" src="/images/upload/{{ tema.imageName }}" title="{{ tema.prodFile }}" class="img-rounded" alt="140x140">
         </div>
 
         {% else %}
@@ -32,18 +32,18 @@
 
     </div>
 
+
 {% if show_content is defined %}
-    <div id="tema-content" style="margin-bottom:20px;padding: 0 20px;font-size: medium">
+    <div id="tema-content" id="textogeneral" style="margin-bottom:20px;padding: 0 20px;font-size: medium;text-align: justify;line-height: 25px ; ">
         {{ tema.textoTema }}
     </div>
 {% endif %}
+
 <div style="border-top:1px solid #DDD; padding-top: 10px;">
 
     <div style="margin: 10px 0;float: right">
         {{ tema.TemasComentarios.count }} <a href="{{ path('app_tema_show', {'id': tema.id}) }}"><img src="{{ asset('icons/glyphicons-310-comments.png') }}" /></a>
-        {#{% if show_content is not defined and tema.TemasComentarios.count > 0 %}
-            <a href="{{ path('app_temas_byUser', {'username': tema.TemasComentarios.last.TemasUser}) }}">@{{ tema.TemasComentarios.last.TemasUser }}</a> {{ tema.TemasComentarios.last.createdAt|time_diff }}
-        {% endif %}#}
+
     </div>
     <div style="clear: both"></div>
 </div>
@@ -57,3 +57,4 @@
     {% include ':comentarios:showComentariosByTema.html.twig' with {'comentarios': comentarios} %}
 {% endif %}
 
+</div>

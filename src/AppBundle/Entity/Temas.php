@@ -66,7 +66,7 @@ class Temas
     private $TemasUser;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comentarios", mappedBy="ComentariosTemas")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comentarios", mappedBy="ComentariosTemas", cascade={"persist"})
      */
 
     private $TemasComentarios;

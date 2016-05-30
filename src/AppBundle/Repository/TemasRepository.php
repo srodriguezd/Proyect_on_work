@@ -27,7 +27,7 @@ class TemasRepository extends \Doctrine\ORM\EntityRepository
         return $this->queryAllTemas()->execute();
     }
 
-    public function queryTemasByUserId($id)
+   /* public function queryTemasByUserId($id)
     {
         $qb = $this->createQueryBuilder('t')
             ->leftJoin('t.TemasUser', 'author') // use contextual help to see the associations
@@ -42,5 +42,15 @@ class TemasRepository extends \Doctrine\ORM\EntityRepository
     public function temasByUserId($id)
     {
         return $this->queryTemasByUserId($id)->execute();
+    }*/
+
+
+    public function queryfindTemas($id)
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ;
     }
 }

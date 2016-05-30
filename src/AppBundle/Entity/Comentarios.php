@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use \Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -34,7 +35,7 @@ class Comentarios
     private $comentario;
 
 
-    /**
+     /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -47,7 +48,6 @@ class Comentarios
      * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
-
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Temas", inversedBy="TemasComentarios")
@@ -66,8 +66,8 @@ class Comentarios
 
     public function __construct()
     {
-        $this->createdAt    = new \DateTime();
-        $this->updatedAt    = $this->createdAt;
+        $this->createdAt  = new \DateTime();
+        $this->updatedAt  = new \DateTime("now");
 
     }
 
@@ -117,7 +117,7 @@ class Comentarios
      *
      * @param \DateTime $createdAt
      *
-     * @return Temas
+     * @return Comentarios
      */
     public function setCreatedAt($createdAt)
     {
@@ -141,7 +141,7 @@ class Comentarios
      *
      * @param \DateTime $updatedAt
      *
-     * @return Temas
+     * @return Comentarios
      */
     public function setUpdatedAt()
     {
@@ -158,7 +158,6 @@ class Comentarios
     {
         return $this->updatedAt;
     }
-
 
     //AQUI VA LO NUEVO, RELACIONES CON TEMAS Y USER shit3fr
     // $this->ComentariosTemas = new ArrayCollection(); many to one

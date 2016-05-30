@@ -16,8 +16,8 @@ class TemasController extends Controller
     public function removeAction(Temas $tema)
     {
         $m = $this->getDoctrine()->getManager();
-        $temm = $m->getRepository('AppBundle:Temas')->find($tema);
-        $m->remove($temm);
+        //$temm = $m->getRepository('AppBundle:Temas')->find($tema);
+        $m->remove($tema);
         $m->flush();
 
         return $this->redirectToRoute('app_tema_temas');
