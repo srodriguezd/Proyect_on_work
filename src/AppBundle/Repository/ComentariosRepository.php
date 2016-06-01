@@ -26,15 +26,6 @@ class ComentariosRepository extends \Doctrine\ORM\EntityRepository
         return $this->queryComentariosByTema($id)->execute();
     }
 
-    /*
-    public function lastComments()
-    {
-        return $this->createQueryBuilder('c')
-            ->addOrderBy('c.createdAt', 'DESC')
-            ->setMaxResults(5)
-            ->getQuery()
-            ->execute()
-            ;
-    }*/
+
 
 }

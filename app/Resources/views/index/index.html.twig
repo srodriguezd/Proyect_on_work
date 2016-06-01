@@ -1,27 +1,46 @@
 {% extends '::base.html.twig' %}
 {% block body %}
-    <div>
+    <div class="center-block" id="44" style="margin-top: 60px">
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
 
+            <!--   Welcome   -->
 
 
-            <div>
-                <span>{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</span> | <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+            <div class="container">
+                <div class="col-lg-7 col-md-7 col-xs-7 well-lg"  >
+                    <div class="col-lg-3 col-md-3 col-xs-3" id="ggg"  style="margin-top:20px;margin-bottom:20px;">
+                        <img class="img-responsive img-rounded" style=" float: left; height: 350px; margin-right: 60px" src="{{ asset('\css/Spain.Catalonia.Viladecans.Riera.JPG') }}"  class="img-rounded" >
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-xs-3" id="ggg"  style="margin-top:20px;margin-bottom:20px;">
+                       <h1 style="font-size:40px;padding-left:20px; margin-top: 70px ">Bienvenido!</h1>
+                        <h3 style="font-size:17px; line-height:22px; text-align: justify; padding-left:20px;">
+                            Éste es el informer de Viladecans.
+
+                        </h3>
+
+                        <h3 style="font-size:17px; line-height:22px; text-align: justify; padding-left:20px;">
+                            Siéntete libre de publicar tus preguntas, opiniones, reivindicaciones o cualquier otro tema interesante sobre nuestra ciudad. </h3>
+                        <h3 style="font-size:17px; line-height:22px; text-align: justify; padding-left:20px;">
+                        Entre todos intentaremos ayudarnos. </h3>
+                    </div>
+                </div>
+
             </div>
-            <div>
-                <ul>
-                    <li><a href="{{ path('app_tema_temas') }}">Temas</a> - <a href="{{ path('app_tema_new') }}">New Tema</a></li>
 
-                </ul>
-            </div>
+
+
+
         {% else %}
 
-            <div class="login" id="123" style="margin-top: 200px; position: relative;  padding: 20px 20px 20px; width: 310px;
-            background: white; border-radius: 3px;  color: #404040;background: #EEEEEE; margin: 0 auto;" >
+            <!--   Login   -->
+
+            <div class="center-block"  id="44" style=" padding: 20px 20px 20px; width: 310px;
+             border-radius: 3px;  color: #404040;background: #EEEEEE;" >
                 <h1 style="margin: -20px -20px 21px; line-height: 40px;font-size: 15px;font-weight: bold;color: #555;text-align: center;
                 text-shadow: 0 1px white;background: #f3f3f3; border-bottom: 1px solid #cfcfcf;border-radius: 3px 3px 0 0; @include linear-gradient(top, whiteffd, #eef2f5);
                  @include box-shadow(0 1px #f5f5f5);  @include box-shadow(0 0 200px rgba(white, .5), 0 1px 2px rgba(black, .3));">Welcome!</h1>
-                <form method="post" action="index.html" style="text-align: center; " >
+                <form method="post" style="text-align: center; " >
 
                     <span>You are anonymous</span> | <a style=" color: #0D3349; text-decoration: none; text-align: center;" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a> -
                     <a style=" color: #0D3349; text-decoration: none; text-align: center;" href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>

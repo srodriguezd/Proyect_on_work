@@ -39,8 +39,20 @@
 }
 
 
-.center-block {
-
+body {
+    /*background-color:#99cb84 !important;
+    background-color: #96b884;*/
 }
 /*************/
 
+#44{
+
+    margin-top: 300px;
+    padding-top: 300px;
+    margin-left: auto !important;;
+    margin-right: auto !important;
+    display: flex;
+
+    align-content: center;
+    flex-direction: column;
+}

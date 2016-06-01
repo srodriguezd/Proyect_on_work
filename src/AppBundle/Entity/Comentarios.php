@@ -30,7 +30,7 @@ class Comentarios
     /**
      * @var string
      *
-     * @ORM\Column(name="comentario", type="string", length=255, nullable=true)
+     * @ORM\Column(name="comentario", type="string", length=800, nullable=true)
      */
     private $comentario;
 

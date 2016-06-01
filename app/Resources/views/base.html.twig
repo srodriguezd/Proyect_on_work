@@ -25,38 +25,37 @@
     <![endif]-->
 </head>
 
-<body>
-<nav id="alto" class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ path('app_index_index') }}">Gotcha, Viladecans</a>
-
+            <a class="navbar-brand" style="margin-left: 22px" href="{{ path('app_index_index') }}">
+                <img class="img-responsive " style="  height: 20px; " src="{{ asset('\css/unnamed.png') }}"  class="img-rounded" >
+            </a>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <a class="navbar-brand" id="arriba1" href="{{ path('app_tema_temas') }}">Temas</a>
-                <a  class="navbar-brand" id="arriba2" href="{{ path('app_tema_new') }}">Nuevo Tema</a>
-            </ul>
+                <li class=" "><a id="arriba1" href="{{ path('app_tema_temas') }}">Temas</a></li>
 
+                <li class=" "><a id="arriba2" href="{{ path('app_tema_new') }}">Nuevo Tema</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
-                <div class="navbar-form navbar-right">
+                <div class="navbar-form navbar-right" style="margin-right: 30px">
                     {{ render_esi(controller('UserBundle:HoritzontalLogin:horitzontalLogin', {'route': app.request.get('_route')})) }}
                 </div>
             </ul>
-        </div><!-- /.navbar-collapse -->
-
+        </div>
     </div>
 </nav>
 
-<div class="container">
+
+
+<div class="container" >
     <ul>
         {% for message in app.session.flashBag.get('messages') %} <!--POR AQUI -->
             <li>{{ message }}</li>
@@ -68,7 +67,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-10" style=" display: block; margin-left: auto; margin-right: auto; ">
             {% block body %}{% endblock %}
         </div>
 
@@ -76,6 +75,7 @@
 </div> <!-- /container -->
 
 {% block javascripts %}
+<script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 {% endblock %}
 

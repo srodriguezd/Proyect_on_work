@@ -1,6 +1,6 @@
 
-<div class="row>">
-<div id="tocho" class="rounded-box margin-bottom-lg col-lg-12 container-fluid" style="margin-top: 40px"> {# tema #}
+<div class="row" style=" ">
+<div id="tocho" class="rounded-box margin-bottom-md" style="margin-top: 40px;border-style: solid; border-width: 4px;"> {# tema #}
     <div style="float: right; margin-top: 20px">
         {# Without voter #}
         {% if tema.TemasUser == app.user or is_granted('ROLE_ADMIN') %}
@@ -14,7 +14,7 @@
     </div>
 
 
-    <h1 style="margin-top: 0"><a id="titulo" style="color: inherit; text-decoration: inherit;"  href="{{ path('app_tema_show', {'id': tema.id}) }}">{{ tema.nombreTema }}</a></h1>
+    <h1 style="margin-top: 0"><a id="titulo" style=" padding-top: 20px; color: inherit; text-decoration: inherit;"  href="{{ path('app_tema_show', {'id': tema.id}) }}">{{ tema.nombreTema }}</a></h1>
     <div>
         <strong id="infogen">Usuario:</strong> {{ tema.TemasUser}}
         <strong id="infogen">Creado:</strong> {{ tema.createdAt|date("d/m/Y H:i:s") }}
@@ -23,26 +23,28 @@
         {% if tema.imageName %}
 
         <div style="border-top:1px solid #DDD; padding-top: 20px; margin: 20px ">
-            <img class="img-responsive img-rounded" style="width: 710px; margin: 0 auto" data-src="holder.js/700" src="/images/upload/{{ tema.imageName }}" title="{{ tema.prodFile }}" class="img-rounded" alt="140x140">
+            <img class="img-responsive img-rounded" style="width: 600px; margin: 0 auto" data-src="holder.js/700" src="/images/upload/{{ tema.imageName }}" title="{{ tema.prodFile }}" class="img-rounded" alt="140x140">
         </div>
 
         {% else %}
 
         {% endif %}
+        <div id="tema-content" id="textogeneral" style="margin-top: 30px;margin-bottom:20px;padding: 0 20px;font-size: medium;text-align: justify;line-height: 25px ; ">
+            {{ tema.textoTema }}
+        </div>
+
 
     </div>
 
 
 {% if show_content is defined %}
-    <div id="tema-content" id="textogeneral" style="margin-bottom:20px;padding: 0 20px;font-size: medium;text-align: justify;line-height: 25px ; ">
-        {{ tema.textoTema }}
-    </div>
+
 {% endif %}
 
 <div style="border-top:1px solid #DDD; padding-top: 10px;">
 
     <div style="margin: 10px 0;float: right">
-        {{ tema.TemasComentarios.count }} <a href="{{ path('app_tema_show', {'id': tema.id}) }}"><img src="{{ asset('icons/glyphicons-310-comments.png') }}" /></a>
+        {{ tema.TemasComentarios.count }} <a href="{{ path('app_tema_show', {'id': tema.id}) }}"><img src="{{ asset('icons/unnamed.png') }}" /></a>
 
     </div>
     <div style="clear: both"></div>
